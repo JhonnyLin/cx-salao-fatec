@@ -169,7 +169,7 @@
                       <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                       <Component id="rbtProdutos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnPesquisaSP" min="-2" pref="64" max="-2" attributes="0"/>
+                      <Component id="btnPesquisaSP" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="41" max="32767" attributes="0"/>
@@ -220,7 +220,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="rbtServico" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="rbtProdutos" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnPesquisaSP" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="btnPesquisaSP" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="pnlMenuSP" min="-2" max="-2" attributes="0"/>
@@ -246,9 +246,6 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JButton" name="btnPerfil">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Perfil"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPerfilActionPerformed"/>
       </Events>
@@ -550,6 +547,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="gbnSP"/>
         </Property>
+        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Servi&#xe7;os"/>
       </Properties>
       <Events>
@@ -568,9 +566,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnPesquisaSP">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Pesq"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisaSPActionPerformed"/>
       </Events>

@@ -2,14 +2,16 @@
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-
+import classe.Imagens;
 
 public class frenteCX extends javax.swing.JFrame {
 
     public frenteCX() {
         initComponents();
+        inserirImg();
+        
     }
-
+Imagens imge =  new Imagens();
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -81,7 +83,6 @@ public class frenteCX extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnPerfil.setText("Perfil");
         btnPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPerfilActionPerformed(evt);
@@ -267,6 +268,7 @@ public class frenteCX extends javax.swing.JFrame {
         );
 
         gbnSP.add(rbtServico);
+        rbtServico.setSelected(true);
         rbtServico.setText("Serviços");
         rbtServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,7 +284,6 @@ public class frenteCX extends javax.swing.JFrame {
             }
         });
 
-        btnPesquisaSP.setText("Pesq");
         btnPesquisaSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisaSPActionPerformed(evt);
@@ -395,7 +396,7 @@ public class frenteCX extends javax.swing.JFrame {
                         .addGap(54, 54, 54)
                         .addComponent(rbtProdutos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPesquisaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnPesquisaSP)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -434,7 +435,7 @@ public class frenteCX extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rbtServico)
                             .addComponent(rbtProdutos)
-                            .addComponent(btnPesquisaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnPesquisaSP))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(pnlMenuSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28))
@@ -553,7 +554,10 @@ public class frenteCX extends javax.swing.JFrame {
         pagamento p = new pagamento();
         p.setVisible(true);
     }
- 
+    public void inserirImg(){
+        btnPerfil.setIcon(imge.img("/img/woman1.png"));
+        btnPesquisaSP.setIcon(imge.img("/img/url.png"));
+    }
          
     public void ProdServ(Boolean sP){
         JButton [] btn = {btnRapido1, btnRapido2, btnRapido3, btnRapido4, btnRapido5, btnRapido6, btnRapido7, btnRapido8, btnRapido9, btnRapido10,btnRapido11, btnRapido12, btnRapido13, btnRapido14, btnRapido15, btnRapido16, btnRapido17, btnRapido18, btnRapido19, btnRapido20 };
