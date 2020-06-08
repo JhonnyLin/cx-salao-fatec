@@ -94,6 +94,12 @@ public class cliente extends javax.swing.JFrame {
         jLabel6.setText("Endereço");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(150, 230, 80, 20);
+
+        try {
+            mcrTelClente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)###-###-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         getContentPane().add(mcrTelClente);
         mcrTelClente.setBounds(150, 140, 320, 30);
 

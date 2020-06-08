@@ -72,6 +72,12 @@ public class fornecedor extends javax.swing.JFrame {
         jLabel6.setText("Endereço");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(30, 270, 80, 20);
+
+        try {
+            mcrTelFornecedor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)###-###-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         getContentPane().add(mcrTelFornecedor);
         mcrTelFornecedor.setBounds(30, 190, 320, 30);
 
