@@ -127,7 +127,7 @@ public class fornecedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+        inicializar(false);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnPesqTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqTelActionPerformed
@@ -168,7 +168,19 @@ public class fornecedor extends javax.swing.JFrame {
         });       
     }
     
-    
+     public void inicializar(boolean psq){
+        txtCodFornecedor.setEnabled(psq);
+        btnAdd.setVisible(psq);
+        btnPesqCod.setVisible(psq);
+        btnPesqTel.setVisible(psq); 
+        if(psq){
+            txtEmaiFornecedor.setEnabled(false);
+            atxEndFornecedor.setEditable(false);
+        }else{
+            txtEmaiFornecedor.setEnabled(true);
+            atxEndFornecedor.setEditable(true);
+        }        
+    }
     
     public void inserirImg(){
         Imagens imge = new Imagens();

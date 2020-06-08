@@ -6,6 +6,7 @@ public class pagamento extends javax.swing.JFrame {
         inserirImg();
     }
     Imagens imge = new Imagens();
+    boolean x =  false;
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -53,8 +54,13 @@ public class pagamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbxTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTotalActionPerformed
-        //bloquear a caixa de texto
-        
+        if(x){
+            txtValor.setEnabled(x);
+            x=false;
+        }else{
+            txtValor.setEnabled(x);
+            x=true;
+        }
     }//GEN-LAST:event_cbxTotalActionPerformed
  public void inserirImg(){
         btnDinheiro.setIcon(imge.img("/img/money.png"));

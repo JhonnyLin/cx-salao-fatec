@@ -6,6 +6,7 @@ public class cliente extends javax.swing.JFrame {
         initComponents();
         inserirImg();
     }
+    //area de declaraçoes
     Imagens imge = new Imagens();
     
     @SuppressWarnings("unchecked")
@@ -36,6 +37,7 @@ public class cliente extends javax.swing.JFrame {
         btnEnviar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cliente");
         setMaximumSize(new java.awt.Dimension(570, 500));
         setMinimumSize(new java.awt.Dimension(570, 500));
         getContentPane().setLayout(null);
@@ -96,6 +98,7 @@ public class cliente extends javax.swing.JFrame {
         mcrTelClente.setBounds(150, 140, 320, 30);
 
         buttonGroup1.add(rbtFeminino);
+        rbtFeminino.setSelected(true);
         rbtFeminino.setText("Feminino");
         rbtFeminino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +133,11 @@ public class cliente extends javax.swing.JFrame {
         btnPesqTel.setBounds(500, 140, 26, 26);
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCancelar);
         btnCancelar.setBounds(340, 380, 90, 30);
 
@@ -141,7 +149,7 @@ public class cliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+        inicializar(false);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void rbtFemininoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtFemininoActionPerformed
@@ -151,6 +159,10 @@ public class cliente extends javax.swing.JFrame {
     private void rbtMasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtMasculinoActionPerformed
        lblIcon.setIcon(imge.img("/img/person.png"));
     }//GEN-LAST:event_rbtMasculinoActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -184,8 +196,24 @@ public class cliente extends javax.swing.JFrame {
         });
     } 
     
+    //habilitando campos de acordo com a ação do usuario
+    public void inicializar(boolean psq){
+        btnAdd.setVisible(psq);
+        btnPesqCod.setVisible(psq);
+        txtCodCliente.setEnabled(psq);
+        btnPesqTel.setVisible(psq); 
+        rbtFemininoActionPerformed(null);
+        if(psq){
+            txtEmaiCliente.setEnabled(false);
+            atxEndCliente.setEditable(false);
+        }else{
+            txtEmaiCliente.setEnabled(true);
+            atxEndCliente.setEditable(true);
+        }        
+    }
+    
+    //inserindo imagens nos componentes do frame
      public void inserirImg(){
-       
         btnPesqCod.setIcon(imge.img("/img/buscar16.png"));
         btnPesqNome.setIcon(imge.img("/img/buscar16.png"));
         btnPesqTel.setIcon(imge.img("/img/buscar16.png"));

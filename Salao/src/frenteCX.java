@@ -1,8 +1,8 @@
 
-import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import classe.Imagens;
+import javax.swing.JFrame;
 
 public class frenteCX extends javax.swing.JFrame {
 
@@ -11,7 +11,10 @@ public class frenteCX extends javax.swing.JFrame {
         inserirImg();
         
     }
-Imagens imge =  new Imagens();
+    Imagens imge =  new Imagens();
+    cliente c = new cliente();
+    fornecedor f = new fornecedor();
+    pagamento p = new pagamento();
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -468,7 +471,8 @@ Imagens imge =  new Imagens();
     }//GEN-LAST:event_btnRapido3ActionPerformed
 
     private void imnCadCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnCadCActionPerformed
-        cliente();             
+        chamadaFram(c);  
+        c.inicializar(false);
     }//GEN-LAST:event_imnCadCActionPerformed
 
     private void imnHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnHistoricoActionPerformed
@@ -476,19 +480,22 @@ Imagens imge =  new Imagens();
     }//GEN-LAST:event_imnHistoricoActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-        cliente();  
+        chamadaFram(c);
+        c.inicializar(true);
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void imnCadFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnCadFActionPerformed
-        fornecedor();
+        chamadaFram(f);
+        f.inicializar(false);
     }//GEN-LAST:event_imnCadFActionPerformed
 
     private void imnConFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnConFActionPerformed
-        fornecedor();
+        chamadaFram(f);
+        f.inicializar(true);
     }//GEN-LAST:event_imnConFActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        pagamento();
+        chamadaFram(p);
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void rbtProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtProdutosActionPerformed
@@ -542,18 +549,12 @@ Imagens imge =  new Imagens();
         
     }
     
-    public void cliente(){
-        cliente c = new cliente();
-        c.setVisible(true);
-    }  
-    public void fornecedor(){
-        fornecedor f = new fornecedor();
-        f.setVisible(true);
+    //minhas clases
+    
+    private void chamadaFram(JFrame x){
+        x.setVisible(true);
     }
-    public void pagamento(){
-        pagamento p = new pagamento();
-        p.setVisible(true);
-    }
+   
     public void inserirImg(){
         btnPerfil.setIcon(imge.img("/img/woman1.png"));
         btnPesquisaSP.setIcon(imge.img("/img/url.png"));
