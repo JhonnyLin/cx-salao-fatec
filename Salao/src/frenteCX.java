@@ -9,7 +9,10 @@ public class frenteCX extends javax.swing.JFrame {
     public frenteCX() {
         initComponents();
         inserirImg();
-        
+        txtNmCliente.setEnabled(false);
+        txtCdCliente.setEnabled(false);
+        txtTotais.setEnabled(false);
+        rbtServicoActionPerformed(null);
     }
     Imagens imge =  new Imagens();
     cliente c = new cliente();
@@ -84,7 +87,7 @@ public class frenteCX extends javax.swing.JFrame {
         jMenu5.setText("Edit");
         jMenuBar2.add(jMenu5);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,6 +296,7 @@ public class frenteCX extends javax.swing.JFrame {
             }
         });
 
+        lblTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblTotal.setText("Total");
 
         btnPagar.setText("PAGAR");

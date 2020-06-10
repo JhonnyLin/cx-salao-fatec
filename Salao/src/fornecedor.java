@@ -6,7 +6,11 @@ public class fornecedor extends javax.swing.JFrame {
         initComponents();
         inserirImg();
     }
-
+    String a;
+    boolean psq;
+   
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -91,12 +95,22 @@ public class fornecedor extends javax.swing.JFrame {
 
         btnPesqCod.setMaximumSize(new java.awt.Dimension(26, 26));
         btnPesqCod.setMinimumSize(new java.awt.Dimension(26, 26));
+        btnPesqCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesqCodActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnPesqCod);
         btnPesqCod.setBounds(120, 40, 26, 26);
 
         btnPesqCNPJ.setMaximumSize(new java.awt.Dimension(26, 26));
         btnPesqCNPJ.setMinimumSize(new java.awt.Dimension(26, 26));
         btnPesqCNPJ.setPreferredSize(new java.awt.Dimension(26, 26));
+        btnPesqCNPJ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesqCNPJActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnPesqCNPJ);
         btnPesqCNPJ.setBounds(380, 140, 26, 26);
 
@@ -111,10 +125,20 @@ public class fornecedor extends javax.swing.JFrame {
         btnPesqTel.setBounds(380, 190, 26, 26);
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCancelar);
         btnCancelar.setBounds(270, 400, 90, 30);
 
         btnEnviar.setText("Enviar");
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEnviar);
         btnEnviar.setBounds(90, 400, 90, 30);
 
@@ -124,6 +148,11 @@ public class fornecedor extends javax.swing.JFrame {
 
         btnPesqNome.setMaximumSize(new java.awt.Dimension(26, 26));
         btnPesqNome.setMinimumSize(new java.awt.Dimension(26, 26));
+        btnPesqNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesqNomeActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnPesqNome);
         btnPesqNome.setBounds(380, 90, 26, 26);
         getContentPane().add(mcrCNPJ);
@@ -137,8 +166,32 @@ public class fornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnPesqTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqTelActionPerformed
-        // TODO add your handling code here:
+       a = mcrTelFornecedor.getText();
     }//GEN-LAST:event_btnPesqTelActionPerformed
+
+    private void btnPesqCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqCodActionPerformed
+       a = txtCodFornecedor.getText();
+    }//GEN-LAST:event_btnPesqCodActionPerformed
+
+    private void btnPesqCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqCNPJActionPerformed
+       a = mcrCNPJ.getText();
+    }//GEN-LAST:event_btnPesqCNPJActionPerformed
+
+    private void btnPesqNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqNomeActionPerformed
+       a = txtNmFornecedor.getText();
+    }//GEN-LAST:event_btnPesqNomeActionPerformed
+
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+       if(psq){
+       
+       }else{
+       
+       }
+    }//GEN-LAST:event_btnEnviarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     
        
@@ -175,6 +228,7 @@ public class fornecedor extends javax.swing.JFrame {
     }
     
      public void inicializar(boolean psq){
+        this.psq = psq;
         txtCodFornecedor.setEnabled(psq);
         btnAdd.setVisible(psq);
         btnPesqCod.setVisible(psq);

@@ -4,6 +4,7 @@ public class pagamento extends javax.swing.JFrame {
     public pagamento() {
         initComponents();
         inserirImg();
+        cbxTotalActionPerformed(null);
     }
     Imagens imge = new Imagens();
     boolean x =  false;
@@ -11,7 +12,6 @@ public class pagamento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblPagamento = new javax.swing.JLabel();
         lblValor = new javax.swing.JLabel();
         txtValor = new javax.swing.JTextField();
         cbxTotal = new javax.swing.JCheckBox();
@@ -19,14 +19,11 @@ public class pagamento extends javax.swing.JFrame {
         btnDinheiro = new javax.swing.JButton();
         btnCartao = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Pagamento");
         setMaximumSize(new java.awt.Dimension(421, 266));
         setMinimumSize(new java.awt.Dimension(421, 266));
         getContentPane().setLayout(null);
-
-        lblPagamento.setText("Pagamento");
-        getContentPane().add(lblPagamento);
-        lblPagamento.setBounds(10, 10, 120, 30);
 
         lblValor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblValor.setText("VALOR");
@@ -35,6 +32,7 @@ public class pagamento extends javax.swing.JFrame {
         getContentPane().add(txtValor);
         txtValor.setBounds(140, 60, 140, 40);
 
+        cbxTotal.setSelected(true);
         cbxTotal.setText("TOTAL");
         cbxTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +103,6 @@ public class pagamento extends javax.swing.JFrame {
     private javax.swing.JButton btnDinheiro;
     private javax.swing.JButton btnFiado;
     private javax.swing.JCheckBox cbxTotal;
-    private javax.swing.JLabel lblPagamento;
     private javax.swing.JLabel lblValor;
     private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
