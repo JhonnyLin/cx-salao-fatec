@@ -1,4 +1,5 @@
 import classe.Imagens;
+import javax.swing.JOptionPane;
 public class cliente extends javax.swing.JFrame {
 
     
@@ -148,6 +149,11 @@ public class cliente extends javax.swing.JFrame {
         btnCancelar.setBounds(340, 380, 90, 30);
 
         btnEnviar.setText("Enviar");
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEnviar);
         btnEnviar.setBounds(150, 380, 90, 30);
 
@@ -169,6 +175,12 @@ public class cliente extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+       String nm = this.txtNmCliente.getText();
+       String cd = this.txtCodCliente.getText();
+        
+    }//GEN-LAST:event_btnEnviarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

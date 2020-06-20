@@ -1,4 +1,4 @@
-package ClassesBD;
+package ClasseBD;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +15,7 @@ public class ConexaoBD {
     try{
         Class.forName("com.mysql.jdbc.Driver");
         
-        c = DriverManager.getConnection("jdbc:mysql://localhost:3306/aulabd?useSSL=false", "root", "12345");
+        c = DriverManager.getConnection("jdbc:mysql://localhost:3306/salao_bd", "root", "");
         
         System.out.println("conectado");
         
@@ -23,12 +23,15 @@ public class ConexaoBD {
     System.out.println("erro!");
     }    
 }
+    //desconectando do bd
     public static void desconnect(){
     try{
-    c.close();
+        c.close();
+        System.out.println("desconectado");
     }catch(Exception e){e.printStackTrace();}
     
     }
+    
     public static ResultSet rsexecutar(String query){
     //presiza de uma variavel com retorno quem faz essa função é 
         ResultSet rs = null;
@@ -43,6 +46,7 @@ public class ConexaoBD {
     
    return rs;
 }
+    
     public static void executar(String query){
         try{
         //criar a variação que faz a requisição

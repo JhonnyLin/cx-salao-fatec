@@ -1,9 +1,12 @@
 
+import ClasseBD.ConexaoBD;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import classe.Imagens;
 import javax.swing.JFrame;
+import ClasseBD.ConexaoBD;
 
+//fazer uma classe só pra chamadas
 public class frenteCX extends javax.swing.JFrame {
 
     public frenteCX() {
@@ -18,6 +21,9 @@ public class frenteCX extends javax.swing.JFrame {
     cliente c = new cliente();
     fornecedor f = new fornecedor();
     pagamento p = new pagamento();
+    ConexaoBD cxbd = new ConexaoBD();
+   
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -116,6 +122,11 @@ public class frenteCX extends javax.swing.JFrame {
         btnRapido7.setText("jButton2");
 
         btnRapido2.setText("jButton3");
+        btnRapido2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido2ActionPerformed(evt);
+            }
+        });
 
         btnRapido3.setText("jButton4");
         btnRapido3.addActionListener(new java.awt.event.ActionListener() {
@@ -137,6 +148,11 @@ public class frenteCX extends javax.swing.JFrame {
         btnRapido10.setText("jButton2");
 
         btnRapido1.setText("jButton1");
+        btnRapido1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido1ActionPerformed(evt);
+            }
+        });
 
         btnRapido8.setText("jButton2");
 
@@ -519,6 +535,16 @@ public class frenteCX extends javax.swing.JFrame {
         ProdServ(false);
     }//GEN-LAST:event_rbtServicoActionPerformed
 
+    private void btnRapido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido1ActionPerformed
+        ConexaoBD cxb = new ConexaoBD();
+        cxb.connect();
+    }//GEN-LAST:event_btnRapido1ActionPerformed
+
+    private void btnRapido2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido2ActionPerformed
+       ConexaoBD cxb = new ConexaoBD();
+       cxb.desconnect();
+    }//GEN-LAST:event_btnRapido2ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -554,7 +580,7 @@ public class frenteCX extends javax.swing.JFrame {
     }
     
     //minhas clases
-    
+ 
     private void chamadaFram(JFrame x){
         x.setVisible(true);
     }
@@ -573,10 +599,15 @@ public class frenteCX extends javax.swing.JFrame {
             }
         }else{
             for(int i =0; i<btn.length;i++){
-                btn[i].setText("erika");
+                btn[i].setText("lin");
             }
         }
         }
+    
+    public void setCliente(String nome, String cod){
+        this.txtCdCliente.setText(cod);
+        this.txtNmCliente.setText(nome);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PnlTabela;
@@ -633,8 +664,8 @@ public class frenteCX extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtProdutos;
     private javax.swing.JRadioButton rbtServico;
     private javax.swing.JTable tblCarrinho;
-    private javax.swing.JTextField txtCdCliente;
-    private javax.swing.JTextField txtNmCliente;
+    public javax.swing.JTextField txtCdCliente;
+    public javax.swing.JTextField txtNmCliente;
     private javax.swing.JTextField txtTotais;
     // End of variables declaration//GEN-END:variables
 }
