@@ -11,7 +11,7 @@ public class ConexaoBD {
     
     //metodo para conectar o BD
     public static void connect(){
-    System.out.println("Conectando ao banco....");
+        System.out.println("Conectando ao banco....");
     try{
         Class.forName("com.mysql.jdbc.Driver");
         
@@ -23,6 +23,7 @@ public class ConexaoBD {
     System.out.println("erro!");
     }    
 }
+    
     //desconectando do bd
     public static void desconnect(){
     try{
@@ -32,14 +33,15 @@ public class ConexaoBD {
     
     }
     
+    //recebe a quary pot parametro
     public static ResultSet rsexecutar(String query){
-    //presiza de uma variavel com retorno quem faz essa função é 
+        //presiza de uma variavel com retorno quem faz essa função é 
         ResultSet rs = null;
     try{
-    //variavel eu faz a requisição
+        //variavel eu faz a requisição
         Statement sql = c.createStatement();
-    //faz requisição no banco de dados e guarda na ResultSet rs
-    rs = sql.executeQuery(query);
+        //faz requisição no banco de dados e guarda na ResultSet rs
+        rs = sql.executeQuery(query);
     }catch(Exception e){e.printStackTrace();
     
     }

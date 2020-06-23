@@ -536,8 +536,15 @@ public class frenteCX extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtServicoActionPerformed
 
     private void btnRapido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido1ActionPerformed
+        //conectando ao banco de dados
         ConexaoBD cxb = new ConexaoBD();
-        cxb.connect();
+        try{
+            cxb.connect();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        
     }//GEN-LAST:event_btnRapido1ActionPerformed
 
     private void btnRapido2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido2ActionPerformed

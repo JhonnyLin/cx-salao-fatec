@@ -182,11 +182,7 @@ public class fornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesqNomeActionPerformed
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-       if(psq){
-       
-       }else{
-       
-       }
+        inserirForn();
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -226,8 +222,26 @@ public class fornecedor extends javax.swing.JFrame {
             }
         });       
     }
-    
-     public void inicializar(boolean psq){
+    //quary pronta
+    public String inserirForn(){
+        //definindo a tabela e os campos para inserir
+        String q = "INSERT INTO `salao_bd`.`fornecedor` (`nm_Fornecedor`, `cd_CNPJ`, `cd_Telefone`,`ds_Email`,`ds_Endereco`) ";
+        //declaração dos campos
+        String nm_Fornecedor, cd_CNPJ, cd_Telefone, ds_Email, ds_Endereco;
+        //pegando o valor das caixas de texto
+        nm_Fornecedor = txtNmFornecedor.getText();
+        cd_CNPJ = mcrCNPJ.getText();
+        cd_Telefone = mcrTelFornecedor.getText();
+        ds_Email= txtEmaiFornecedor.getText();
+        ds_Endereco = atxEndFornecedor.getText();
+        //colocando as variaveis na quary
+        String a = "VALUES('"+ nm_Fornecedor +"', '"+cd_CNPJ +"' ,'"+ cd_Telefone +"','"+ ds_Email +"','"+ ds_Endereco +"')";
+        //teste
+        System.out.println(q+a);
+        return q+a;
+    }
+        
+    public void inicializar(boolean psq){
         this.psq = psq;
         txtCodFornecedor.setEnabled(psq);
         btnAdd.setVisible(psq);

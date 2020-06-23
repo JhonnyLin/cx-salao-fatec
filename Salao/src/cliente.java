@@ -1,4 +1,6 @@
+import ClasseBD.ConexaoBD;
 import classe.Imagens;
+import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
 public class cliente extends javax.swing.JFrame {
 
@@ -14,7 +16,7 @@ public class cliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        gbtSexo = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         lblIcon = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -104,7 +106,7 @@ public class cliente extends javax.swing.JFrame {
         getContentPane().add(mcrTelClente);
         mcrTelClente.setBounds(150, 140, 320, 30);
 
-        buttonGroup1.add(rbtFeminino);
+        gbtSexo.add(rbtFeminino);
         rbtFeminino.setSelected(true);
         rbtFeminino.setText("Feminino");
         rbtFeminino.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +117,7 @@ public class cliente extends javax.swing.JFrame {
         getContentPane().add(rbtFeminino);
         rbtFeminino.setBounds(30, 180, 110, 23);
 
-        buttonGroup1.add(rbtMasculino);
+        gbtSexo.add(rbtMasculino);
         rbtMasculino.setText("Masculino");
         rbtMasculino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,9 +179,7 @@ public class cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-       String nm = this.txtNmCliente.getText();
-       String cd = this.txtCodCliente.getText();
-        
+        inserirCli();
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     public static void main(String args[]) {
@@ -213,6 +213,25 @@ public class cliente extends javax.swing.JFrame {
             }
         });
     } 
+    //quary pronta
+    public String inserirCli(){
+        //definindo a tabela e os campos para inserir
+        String q = "INSERT INTO `salao_bd`.`cliente`(`nm_Cliente`,`cd_Telefone`,`ds_Email`,`ds_Endereco`,`bl_Sexo_F`) ";
+        //declaração dos campos
+        String nm_Cliente, cd_Telefone, ds_Email, ds_Endereco;
+        Boolean bl_Sexo_F;
+        //pegando o valor das caixas de texto
+        nm_Cliente = txtNmCliente.getText();
+        cd_Telefone = mcrTelClente.getText();
+        ds_Email= txtEmaiCliente.getText();
+        ds_Endereco = atxEndCliente.getText();
+        bl_Sexo_F = rbtFeminino.isSelected();
+        //colocando as variaveis na quary
+        String a = "VALUES('"+ nm_Cliente +"','"+ cd_Telefone +"','"+ ds_Email +"','"+ ds_Endereco +"','"+ bl_Sexo_F+"')";
+        //teste
+        System.out.println(q+a);
+        return q+a;
+    }
     
     //habilitando campos de acordo com a ação do usuario
     public void inicializar(boolean psq){
@@ -248,7 +267,7 @@ public class cliente extends javax.swing.JFrame {
     private javax.swing.JButton btnPesqCod;
     private javax.swing.JButton btnPesqNome;
     private javax.swing.JButton btnPesqTel;
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup gbtSexo;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
