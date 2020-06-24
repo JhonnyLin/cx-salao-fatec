@@ -543,8 +543,6 @@ public class frenteCX extends javax.swing.JFrame {
         }catch(Exception e){
             e.printStackTrace();
         }
-        
-        
     }//GEN-LAST:event_btnRapido1ActionPerformed
 
     private void btnRapido2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido2ActionPerformed

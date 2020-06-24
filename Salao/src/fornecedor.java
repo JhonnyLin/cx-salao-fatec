@@ -1,3 +1,4 @@
+import ClasseBD.ConexaoBD;
 import classe.Imagens;
 
 public class fornecedor extends javax.swing.JFrame {
@@ -167,22 +168,30 @@ public class fornecedor extends javax.swing.JFrame {
 
     private void btnPesqTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqTelActionPerformed
        a = mcrTelFornecedor.getText();
+       pesquisaForn(a,"cd_Telefone");
     }//GEN-LAST:event_btnPesqTelActionPerformed
 
     private void btnPesqCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqCodActionPerformed
        a = txtCodFornecedor.getText();
+       pesquisaForn(a,"idfornecedor");
+       
     }//GEN-LAST:event_btnPesqCodActionPerformed
 
     private void btnPesqCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqCNPJActionPerformed
        a = mcrCNPJ.getText();
+       pesquisaForn(a,"cd_CNPJ");
     }//GEN-LAST:event_btnPesqCNPJActionPerformed
 
     private void btnPesqNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqNomeActionPerformed
        a = txtNmFornecedor.getText();
+       pesquisaForn(a,"nm_Fornecedor");
     }//GEN-LAST:event_btnPesqNomeActionPerformed
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-        inserirForn();
+       String query = inserirForn();
+       ConexaoBD.connect();
+       ConexaoBD.executar(query);
+       
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -222,10 +231,16 @@ public class fornecedor extends javax.swing.JFrame {
             }
         });       
     }
+    public Boolean pesquisaForn(String texto, String campo){
+        String q = "SELECT * FROM fornecedor WHERE  ";
+        String query = q+campo+"= '"+texto+"'";
+        System.out.println(query);
+        return false;
+    }
     //quary pronta
     public String inserirForn(){
         //definindo a tabela e os campos para inserir
-        String q = "INSERT INTO `salao_bd`.`fornecedor` (`nm_Fornecedor`, `cd_CNPJ`, `cd_Telefone`,`ds_Email`,`ds_Endereco`) ";
+        String q = "INSERT INTO fornecedor (nm_Fornecedor, cd_CNPJ, cd_Telefone, ds_Email,ds_Endereco) ";
         //declaração dos campos
         String nm_Fornecedor, cd_CNPJ, cd_Telefone, ds_Email, ds_Endereco;
         //pegando o valor das caixas de texto

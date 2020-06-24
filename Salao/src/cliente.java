@@ -11,7 +11,7 @@ public class cliente extends javax.swing.JFrame {
     }
     //area de declaraçoes
     Imagens imge = new Imagens();
-    
+    String texto;
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -41,7 +41,6 @@ public class cliente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cliente");
-        setMaximumSize(new java.awt.Dimension(570, 500));
         setMinimumSize(new java.awt.Dimension(570, 500));
         getContentPane().setLayout(null);
 
@@ -134,10 +133,28 @@ public class cliente extends javax.swing.JFrame {
         });
         getContentPane().add(btnAdd);
         btnAdd.setBounds(480, 20, 50, 50);
+
+        btnPesqCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesqCodActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnPesqCod);
         btnPesqCod.setBounds(230, 40, 26, 26);
+
+        btnPesqNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesqNomeActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnPesqNome);
         btnPesqNome.setBounds(500, 90, 26, 26);
+
+        btnPesqTel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesqTelActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnPesqTel);
         btnPesqTel.setBounds(500, 140, 26, 26);
 
@@ -179,8 +196,28 @@ public class cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-        inserirCli();
+        
+        String query = inserirCli();
+        //só pra teste
+        ConexaoBD.connect();
+        ConexaoBD.executar(query);
+        
     }//GEN-LAST:event_btnEnviarActionPerformed
+
+    private void btnPesqCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqCodActionPerformed
+        texto = txtCodCliente.getText();
+        pesquisaCli(texto,"idcliente");
+    }//GEN-LAST:event_btnPesqCodActionPerformed
+
+    private void btnPesqNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqNomeActionPerformed
+        texto = txtNmCliente.getText();
+        pesquisaCli(texto,"nm_Cliente");
+    }//GEN-LAST:event_btnPesqNomeActionPerformed
+
+    private void btnPesqTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqTelActionPerformed
+        texto = mcrTelClente.getText();
+        pesquisaCli(texto,"cd_Telefone");
+    }//GEN-LAST:event_btnPesqTelActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -212,11 +249,19 @@ public class cliente extends javax.swing.JFrame {
                 new cliente().setVisible(true);
             }
         });
-    } 
+    }
+    
+    public Boolean pesquisaCli(String texto, String campo){
+        String q = "SELECT * FROM cliente WHERE  ";
+        String query = q+campo+"= '"+texto+"'";
+        System.out.println(query);
+        return false;
+    }
+    
     //quary pronta
     public String inserirCli(){
         //definindo a tabela e os campos para inserir
-        String q = "INSERT INTO `salao_bd`.`cliente`(`nm_Cliente`,`cd_Telefone`,`ds_Email`,`ds_Endereco`,`bl_Sexo_F`) ";
+        String q = "INSERT INTO cliente(nm_Cliente,cd_Telefone,ds_Email,ds_Endereco,bl_Sexo_F) ";
         //declaração dos campos
         String nm_Cliente, cd_Telefone, ds_Email, ds_Endereco;
         Boolean bl_Sexo_F;
@@ -227,7 +272,7 @@ public class cliente extends javax.swing.JFrame {
         ds_Endereco = atxEndCliente.getText();
         bl_Sexo_F = rbtFeminino.isSelected();
         //colocando as variaveis na quary
-        String a = "VALUES('"+ nm_Cliente +"','"+ cd_Telefone +"','"+ ds_Email +"','"+ ds_Endereco +"','"+ bl_Sexo_F+"')";
+        String a = "VALUES('"+ nm_Cliente +"','"+ cd_Telefone +"','"+ ds_Email +"','"+ ds_Endereco +"',"+ bl_Sexo_F+")";
         //teste
         System.out.println(q+a);
         return q+a;
