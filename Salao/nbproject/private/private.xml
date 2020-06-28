@@ -4,11 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/thiag/Desktop/cx-salao-fatec/Salao/src/fornecedor.java</file>
+            <file>file:/C:/Users/thiag/Desktop/cx-salao-fatec/Salao/src/ClasseBD/ConexaoBD.java</file>
             <file>file:/C:/Users/thiag/Desktop/cx-salao-fatec/Salao/src/pagamento.java</file>
-            <file>file:/C:/Users/thiag/Desktop/cx-salao-fatec/Salao/src/frenteCX.java</file>
             <file>file:/C:/Users/thiag/Desktop/cx-salao-fatec/Salao/src/cliente.java</file>
             <file>file:/C:/Users/thiag/Desktop/cx-salao-fatec/Salao/src/classe/Imagens.java</file>
-            <file>file:/C:/Users/thiag/Desktop/cx-salao-fatec/Salao/src/ClassesBD/ConexaoBD.java</file>
+            <file>file:/C:/Users/thiag/Desktop/cx-salao-fatec/Salao/src/frenteCX.java</file>
         </group>
     </open-files>
 </project-private>

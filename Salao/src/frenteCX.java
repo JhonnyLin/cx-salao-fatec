@@ -5,6 +5,8 @@ import javax.swing.JOptionPane;
 import classe.Imagens;
 import javax.swing.JFrame;
 import ClasseBD.ConexaoBD;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 
 //fazer uma classe só pra chamadas
 public class frenteCX extends javax.swing.JFrame {
@@ -16,13 +18,19 @@ public class frenteCX extends javax.swing.JFrame {
         txtCdCliente.setEnabled(false);
         txtTotais.setEnabled(false);
         rbtServicoActionPerformed(null);
+        ConexaoBD.connect();
+        criarTabela();
     }
     Imagens imge =  new Imagens();
     cliente c = new cliente();
     fornecedor f = new fornecedor();
     pagamento p = new pagamento();
     ConexaoBD cxbd = new ConexaoBD();
-   
+    //prepara model para tabela
+    DefaultTableModel dtm = new DefaultTableModel(); 
+    //a execução do comando será feita pelo método rsexecutar, na classe AcesspBD
+    //o retorno do metodo sera um Resulset que sera armazenado em rsresultado
+    ResultSet rsresultado ;
     
 
     @SuppressWarnings("unchecked")
@@ -265,13 +273,10 @@ public class frenteCX extends javax.swing.JFrame {
 
         tblCarrinho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane1.setViewportView(tblCarrinho);
@@ -280,13 +285,13 @@ public class frenteCX extends javax.swing.JFrame {
         PnlTabela.setLayout(PnlTabelaLayout);
         PnlTabelaLayout.setHorizontalGroup(
             PnlTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlTabelaLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
         );
         PnlTabelaLayout.setVerticalGroup(
             PnlTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
+            .addGroup(PnlTabelaLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         gbnSP.add(rbtServico);
@@ -403,36 +408,41 @@ public class frenteCX extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNome)
-                            .addComponent(txtNmCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCod, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(pnlMenuSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(rbtServico)
-                        .addGap(54, 54, 54)
-                        .addComponent(rbtProdutos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPesquisaSP)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PnlTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtTotais, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(38, 38, 38))
+                                .addComponent(btnPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNome)
+                                    .addComponent(txtNmCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblCod, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rbtServico)
+                                .addGap(54, 54, 54)
+                                .addComponent(rbtProdutos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(162, 162, 162))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnPesquisaSP)
+                            .addComponent(pnlMenuSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(PnlTabela, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtTotais, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(38, 38, 38))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblInfSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -457,22 +467,27 @@ public class frenteCX extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rbtServico)
-                            .addComponent(rbtProdutos)
-                            .addComponent(btnPesquisaSP))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbtProdutos))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pnlMenuSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
+                        .addGap(0, 10, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(PnlTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtTotais, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
-                        .addGap(27, 27, 27)
-                        .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(PnlTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(103, 103, 103)
+                                .addComponent(btnPesquisaSP)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblInfSistema)
-                        .addContainerGap())))
+                        .addComponent(txtTotais, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(lblInfSistema))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(106, 106, 106)))
+                .addContainerGap())
         );
 
         pack();
@@ -487,7 +502,7 @@ public class frenteCX extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCdClienteActionPerformed
 
     private void btnRapido3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido3ActionPerformed
-        // TODO add your handling code here:
+        confgTabela("3","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '3'");
     }//GEN-LAST:event_btnRapido3ActionPerformed
 
     private void imnCadCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnCadCActionPerformed
@@ -524,10 +539,13 @@ public class frenteCX extends javax.swing.JFrame {
 
     private void btnPesquisaSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaSPActionPerformed
         //chamar form configução expecifica
+        ConexaoBD.connect();
         if(rbtProdutos.isSelected()){
-            JOptionPane.showMessageDialog(null, "Produto");
-        }else{
+           JOptionPane.showMessageDialog(null, "Produto");
+        //    pesquisaSP("SELECT * nm_fornecedor FROM produto");
+       }else{
             JOptionPane.showMessageDialog(null, "serviço");
+         //   pesquisaSP("SELECT * FROM servico");
         }
     }//GEN-LAST:event_btnPesquisaSPActionPerformed
 
@@ -536,18 +554,11 @@ public class frenteCX extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtServicoActionPerformed
 
     private void btnRapido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido1ActionPerformed
-        //conectando ao banco de dados
-        ConexaoBD cxb = new ConexaoBD();
-        try{
-            cxb.connect();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+       confgTabela( "1","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '1'");
     }//GEN-LAST:event_btnRapido1ActionPerformed
 
     private void btnRapido2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido2ActionPerformed
-       ConexaoBD cxb = new ConexaoBD();
-       cxb.desconnect();
+       confgTabela("2","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '2'");
     }//GEN-LAST:event_btnRapido2ActionPerformed
 
     public static void main(String args[]) {
@@ -585,6 +596,87 @@ public class frenteCX extends javax.swing.JFrame {
     }
     
     //minhas clases
+    private void criarTabela(){   
+            //adiciona as colunas
+            tblCarrinho.setModel(dtm);
+            //qtd colunas
+            int qtdcoluna = 5;
+            String [] nomes = {"Cód","Descrição", "Qtde", "Vl Un.", "Vl Total"};  
+            //add as colunas na tabela
+            for(int i =0; i<qtdcoluna; i++){
+                //adiciona os nomes no dtm que é o model
+                //ele é quem adiciona os dados na tabela
+                dtm.addColumn(nomes[i]);
+            }
+           
+    }
+    
+    private void confgTabela(String cod, String q){
+        boolean fdp = true;
+        if(dtm.getRowCount() != 0){
+            //posso colocar return para melhorar o processamento
+            for(int i =0; i<dtm.getRowCount(); i++ ){
+                if(dtm.getValueAt(i, 0).equals(cod)){
+                    int a = Integer.parseInt(dtm.getValueAt(i, 2).toString());
+                    a++;
+                    dtm.setValueAt(a, i, 2);
+                    fdp = false;
+                    valorQt(i);
+                }
+            }
+        }
+        if(fdp){
+            inserirSP(q);
+            valorQt(dtm.getRowCount()-1);
+        }
+        somaTotal();
+    }
+    
+    private void somaTotal(){
+        double b = 0;
+        for(int i = 0; i<dtm.getRowCount(); i++){
+            String a = dtm.getValueAt(i, 4).toString();
+            double c = Double.parseDouble(a);
+            b = b + c;
+            txtTotais.setText("R$        "+b);
+        }
+    }
+    
+    private void inserirSP(String q){
+        
+        try{
+            //a execução do comando será feita pelo método rsexecutar, na classe AcesspBD
+            //o retorno do metodo sera um Resulset que sera armazenado em rsresultado
+            rsresultado = ConexaoBD.rsexecutar(q);
+           
+            //adicionar as linhas
+            //array que guarda os dados de cada linha
+            String [] row = new String[5];
+            while(rsresultado.next()){
+                int y = 1;
+                for(int i=0;i<row.length;i++){
+                    //adcionaos dados no array
+                    if(i!=2 && i != 4){
+                        row[i] = rsresultado.getString(y);
+                        y++;
+                    }else{
+                        if(i==2){
+                            row[i] = "1";
+                        }
+                    }  
+                }
+                //adicionar a linha toda na tabela
+                dtm.addRow(row);
+            }
+            }catch(Exception e){e.printStackTrace();}  
+        }
+    
+    private void valorQt(int i){
+        double c = Double.parseDouble(dtm.getValueAt(i, 3).toString());
+        double b = Double.parseDouble(dtm.getValueAt(i, 2).toString());
+        b = b * c;
+        dtm.setValueAt(b, i, 4);
+    }
  
     private void chamadaFram(JFrame x){
         x.setVisible(true);
@@ -593,6 +685,7 @@ public class frenteCX extends javax.swing.JFrame {
     public void inserirImg(){
         btnPerfil.setIcon(imge.img("/img/woman1.png"));
         btnPesquisaSP.setIcon(imge.img("/img/url.png"));
+        
     }
          
     public void ProdServ(Boolean sP){

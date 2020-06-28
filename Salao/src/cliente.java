@@ -206,7 +206,9 @@ public class cliente extends javax.swing.JFrame {
 
     private void btnPesqCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqCodActionPerformed
         texto = txtCodCliente.getText();
-        pesquisaCli(texto,"idcliente");
+        String query = pesquisaCli(texto,"idcliente");
+        ConexaoBD.connect();
+        ConexaoBD.rsexecutar(query);
     }//GEN-LAST:event_btnPesqCodActionPerformed
 
     private void btnPesqNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqNomeActionPerformed
@@ -251,11 +253,11 @@ public class cliente extends javax.swing.JFrame {
         });
     }
     
-    public Boolean pesquisaCli(String texto, String campo){
+    public String pesquisaCli(String texto, String campo){
         String q = "SELECT * FROM cliente WHERE  ";
         String query = q+campo+"= '"+texto+"'";
         System.out.println(query);
-        return false;
+        return query;
     }
     
     //quary pronta
