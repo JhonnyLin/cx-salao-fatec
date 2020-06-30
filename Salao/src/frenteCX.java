@@ -25,6 +25,7 @@ public class frenteCX extends javax.swing.JFrame {
     cliente c = new cliente();
     fornecedor f = new fornecedor();
     pagamento p = new pagamento();
+    servprod s = new servprod();
     ConexaoBD cxbd = new ConexaoBD();
     //prepara model para tabela
     DefaultTableModel dtm = new DefaultTableModel(); 
@@ -388,6 +389,11 @@ public class frenteCX extends javax.swing.JFrame {
         imnConfig.setText("Configurações");
 
         imnServico.setText("Serviço");
+        imnServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imnServicoActionPerformed(evt);
+            }
+        });
         imnConfig.add(imnServico);
 
         imnProdutos.setText("Produtos");
@@ -419,13 +425,12 @@ public class frenteCX extends javax.swing.JFrame {
                                     .addComponent(lblNome)
                                     .addComponent(txtNmCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtCdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblCod, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE))
+                                    .addComponent(lblCod, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(rbtServico)
                                 .addGap(54, 54, 54)
-                                .addComponent(rbtProdutos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(rbtProdutos)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -561,6 +566,10 @@ public class frenteCX extends javax.swing.JFrame {
        confgTabela("2","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '2'");
     }//GEN-LAST:event_btnRapido2ActionPerformed
 
+    private void imnServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnServicoActionPerformed
+        chamadaFram(s);
+    }//GEN-LAST:event_imnServicoActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -690,6 +699,8 @@ public class frenteCX extends javax.swing.JFrame {
          
     public void ProdServ(Boolean sP){
         JButton [] btn = {btnRapido1, btnRapido2, btnRapido3, btnRapido4, btnRapido5, btnRapido6, btnRapido7, btnRapido8, btnRapido9, btnRapido10,btnRapido11, btnRapido12, btnRapido13, btnRapido14, btnRapido15, btnRapido16, btnRapido17, btnRapido18, btnRapido19, btnRapido20 };
+        String [] codProduto ={};
+        String [] codServico ={};
         //serviços
         if(sP){
             for(int i =0; i<btn.length;i++){
