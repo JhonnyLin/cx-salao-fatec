@@ -1,7 +1,5 @@
 import ClasseBD.ConexaoBD;
 import classe.Imagens;
-import javax.swing.ButtonModel;
-import javax.swing.JOptionPane;
 public class cliente extends javax.swing.JFrame {
 
     
@@ -192,7 +190,7 @@ public class cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtMasculinoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed

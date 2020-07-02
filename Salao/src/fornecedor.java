@@ -195,7 +195,7 @@ public class fornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     

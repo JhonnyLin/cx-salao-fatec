@@ -1,5 +1,6 @@
 
 import ClasseBD.ConexaoBD;
+import classe.Imagens;
 import javax.swing.JOptionPane;
 
 public class servprod extends javax.swing.JFrame {
@@ -8,10 +9,12 @@ public class servprod extends javax.swing.JFrame {
     
     public servprod() {
         initComponents();
+        inserirImg();
         txtCod.setEnabled(false);
         txtPercent.setEnabled(false);
         mscVlrComp.setEnabled(false);
     }
+    Imagens imge = new Imagens();
     String [] dados = new String[3];
     boolean serv = true;
             
@@ -34,8 +37,8 @@ public class servprod extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnEnviar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         btnAddProdAserv = new javax.swing.JButton();
@@ -47,6 +50,7 @@ public class servprod extends javax.swing.JFrame {
         setTitle("Cadastro");
         setLocationByPlatform(true);
         setMaximumSize(new java.awt.Dimension(595, 425));
+        setMinimumSize(new java.awt.Dimension(595, 425));
         setPreferredSize(new java.awt.Dimension(595, 425));
         getContentPane().setLayout(null);
 
@@ -102,18 +106,23 @@ public class servprod extends javax.swing.JFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(60, 200, 80, 14);
 
-        jButton2.setText("Enviar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnEnviar.setText("Enviar");
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnEnviarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(140, 340, 110, 23);
+        getContentPane().add(btnEnviar);
+        btnEnviar.setBounds(140, 333, 110, 30);
 
-        jButton3.setText("Cancelar");
-        getContentPane().add(jButton3);
-        jButton3.setBounds(330, 340, 110, 23);
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCancelar);
+        btnCancelar.setBounds(330, 333, 110, 30);
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setSelected(true);
@@ -135,10 +144,8 @@ public class servprod extends javax.swing.JFrame {
         });
         getContentPane().add(jRadioButton2);
         jRadioButton2.setBounds(180, 30, 93, 23);
-
-        btnAddProdAserv.setText("jButton1");
         getContentPane().add(btnAddProdAserv);
-        btnAddProdAserv.setBounds(530, 20, 40, 40);
+        btnAddProdAserv.setBounds(510, 20, 60, 50);
 
         txtVlVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,30 +174,32 @@ public class servprod extends javax.swing.JFrame {
         serv = true;
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         //pega os dados da caixa de texto
         dados[0] = txtNome.getText();
         dados[1] = txtVlVenda.getText();
         dados[2] = atxDescricao.getText();
-         String a,f;
-                 
+        String a,f;
+        //verifica se é um serviço ou produto         
         if(serv){
             a = "INSERT INTO servprod (bl_Serv, nm_ServProd, ds_ServProd, vl_ServProd)";
             f = "VALUES("+ serv +",'"+dados[0]+"','"+dados[2]+"','"+dados[1]+"')";
-            System.out.println(a+f);
         }else{
            a = "INSERT INTO servprod (bl_Serv, nm_ServProd, ds_ServProd, vl_ServProd, qt_Prod) ";
            String b = JOptionPane.showInputDialog("Quantidade em estoque", 0);
            f = "VALUES("+ serv +",'"+dados[0]+"','"+dados[2]+"','"+dados[1]+"','"+b+"')";
-           System.out.println(a+f);
         }
         ConexaoBD.executar(a+f);
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void txtVlVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVlVendaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtVlVendaActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -199,13 +208,19 @@ public class servprod extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void inserirImg(){
+        btnAddProdAserv.setIcon(imge.img("/img/cesta1.png"));
+        btnEnviar.setIcon(imge.img("/img/verifica.png"));
+        btnCancelar.setIcon(imge.img("/img/remover.png"));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea atxDescricao;
     private javax.swing.JButton btnAddProdAserv;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEnviar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
