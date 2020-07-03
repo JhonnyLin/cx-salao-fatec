@@ -23,6 +23,7 @@ public class frenteCX extends javax.swing.JFrame {
     }
     Imagens imge =  new Imagens();
     cliente c = new cliente();
+    buscaServProd bsp = new buscaServProd();
     fornecedor f = new fornecedor();
     pagamento p = new pagamento();
     servprod s = new servprod();
@@ -91,7 +92,7 @@ public class frenteCX extends javax.swing.JFrame {
         imnHistorico = new javax.swing.JMenuItem();
         imnFinanceiro = new javax.swing.JMenuItem();
         imnConfig = new javax.swing.JMenu();
-        imnServico = new javax.swing.JMenuItem();
+        imnCadastro = new javax.swing.JMenuItem();
         imnProdutos = new javax.swing.JMenuItem();
         imnUsuario = new javax.swing.JMenuItem();
         imnAjuda = new javax.swing.JMenuItem();
@@ -103,6 +104,7 @@ public class frenteCX extends javax.swing.JFrame {
         jMenuBar2.add(jMenu5);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(1500, 700));
 
         btnPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,13 +288,13 @@ public class frenteCX extends javax.swing.JFrame {
         PnlTabela.setLayout(PnlTabelaLayout);
         PnlTabelaLayout.setHorizontalGroup(
             PnlTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
         );
         PnlTabelaLayout.setVerticalGroup(
             PnlTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PnlTabelaLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlTabelaLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         gbnSP.add(rbtServico);
@@ -388,15 +390,20 @@ public class frenteCX extends javax.swing.JFrame {
 
         imnConfig.setText("Configurações");
 
-        imnServico.setText("Serviço");
-        imnServico.addActionListener(new java.awt.event.ActionListener() {
+        imnCadastro.setText("Cadastro");
+        imnCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imnServicoActionPerformed(evt);
+                imnCadastroActionPerformed(evt);
             }
         });
-        imnConfig.add(imnServico);
+        imnConfig.add(imnCadastro);
 
         imnProdutos.setText("Produtos");
+        imnProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imnProdutosActionPerformed(evt);
+            }
+        });
         imnConfig.add(imnProdutos);
 
         imnUsuario.setText("Usuarios");
@@ -475,14 +482,14 @@ public class frenteCX extends javax.swing.JFrame {
                             .addComponent(rbtProdutos))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pnlMenuSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 10, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(PnlTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(103, 103, 103)
                                 .addComponent(btnPesquisaSP)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 462, Short.MAX_VALUE)
                         .addComponent(txtTotais, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -545,12 +552,16 @@ public class frenteCX extends javax.swing.JFrame {
     private void btnPesquisaSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaSPActionPerformed
         //chamar form configução expecifica
         ConexaoBD.connect();
+        //se rbnProdutos estiver selecionado
         if(rbtProdutos.isSelected()){
-           JOptionPane.showMessageDialog(null, "Produto");
-        //    pesquisaSP("SELECT * nm_fornecedor FROM produto");
+           //chamar esses metodos do frame buscaSP 
+           bsp.rbnProd.setSelected(true);
+           bsp.criarTabelas1();
+           chamadaFram(bsp);
        }else{
-            JOptionPane.showMessageDialog(null, "serviço");
-         //   pesquisaSP("SELECT * FROM servico");
+            bsp.rbnServ.setSelected(true);
+            bsp.criarTabelas();       
+            chamadaFram(bsp);         
         }
     }//GEN-LAST:event_btnPesquisaSPActionPerformed
 
@@ -566,9 +577,13 @@ public class frenteCX extends javax.swing.JFrame {
        confgTabela("2","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '2'");
     }//GEN-LAST:event_btnRapido2ActionPerformed
 
-    private void imnServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnServicoActionPerformed
+    private void imnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnCadastroActionPerformed
         chamadaFram(s);
-    }//GEN-LAST:event_imnServicoActionPerformed
+    }//GEN-LAST:event_imnCadastroActionPerformed
+
+    private void imnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnProdutosActionPerformed
+        chamadaFram(bsp);
+    }//GEN-LAST:event_imnProdutosActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -699,7 +714,7 @@ public class frenteCX extends javax.swing.JFrame {
          
     public void ProdServ(Boolean sP){
         JButton [] btn = {btnRapido1, btnRapido2, btnRapido3, btnRapido4, btnRapido5, btnRapido6, btnRapido7, btnRapido8, btnRapido9, btnRapido10,btnRapido11, btnRapido12, btnRapido13, btnRapido14, btnRapido15, btnRapido16, btnRapido17, btnRapido18, btnRapido19, btnRapido20 };
-        String [] codProduto ={};
+        int [] codProduto ={};
         String [] codServico ={};
         //serviços
         if(sP){
@@ -748,6 +763,7 @@ public class frenteCX extends javax.swing.JFrame {
     private javax.swing.JMenuItem imnAjuda;
     private javax.swing.JMenuItem imnCadC;
     private javax.swing.JMenuItem imnCadF;
+    private javax.swing.JMenuItem imnCadastro;
     private javax.swing.JMenu imnCliente;
     private javax.swing.JMenuItem imnConF;
     private javax.swing.JMenu imnConfig;
@@ -759,7 +775,6 @@ public class frenteCX extends javax.swing.JFrame {
     private javax.swing.JMenuItem imnHistorico;
     private javax.swing.JMenuItem imnPedidos;
     private javax.swing.JMenuItem imnProdutos;
-    private javax.swing.JMenuItem imnServico;
     private javax.swing.JMenuItem imnUsuario;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;

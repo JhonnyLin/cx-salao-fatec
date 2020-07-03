@@ -1,5 +1,8 @@
 
+import ClasseBD.ConexaoBD;
 import classe.Imagens;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 
 
 public class buscaServProd extends javax.swing.JFrame {
@@ -8,7 +11,9 @@ public class buscaServProd extends javax.swing.JFrame {
         initComponents();
         inserirImg();
     }
-     Imagens imge = new Imagens();
+    Imagens imge = new Imagens();
+    DefaultTableModel dtm = new DefaultTableModel();
+    ResultSet rsresultado ;
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -34,21 +39,24 @@ public class buscaServProd extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         buttonGroup1.add(rbnServ);
-        rbnServ.setSelected(true);
         rbnServ.setText("Serviços");
+        rbnServ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbnServActionPerformed(evt);
+            }
+        });
         getContentPane().add(rbnServ);
         rbnServ.setBounds(30, 20, 110, 23);
 
         buttonGroup1.add(rbnProd);
         rbnProd.setText("Produtos");
-        getContentPane().add(rbnProd);
-        rbnProd.setBounds(180, 20, 120, 23);
-
-        txtCod.addActionListener(new java.awt.event.ActionListener() {
+        rbnProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodActionPerformed(evt);
+                rbnProdActionPerformed(evt);
             }
         });
+        getContentPane().add(rbnProd);
+        rbnProd.setBounds(180, 20, 120, 23);
         getContentPane().add(txtCod);
         txtCod.setBounds(30, 80, 90, 30);
 
@@ -93,12 +101,22 @@ public class buscaServProd extends javax.swing.JFrame {
         jScrollPane1.setBounds(30, 142, 610, 260);
 
         btnEnviar.setText("Enviar");
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEnviar);
-        btnEnviar.setBounds(200, 433, 100, 30);
+        btnEnviar.setBounds(170, 430, 100, 30);
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCancelar);
-        btnCancelar.setBounds(400, 433, 100, 30);
+        btnCancelar.setBounds(390, 430, 100, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -107,13 +125,25 @@ public class buscaServProd extends javax.swing.JFrame {
         String texto = txtNome.getText();
     }//GEN-LAST:event_btnPesqNomeActionPerformed
 
-    private void txtCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodActionPerformed
-
     private void btnPesqCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqCodActionPerformed
         String texto = txtCod.getText();
     }//GEN-LAST:event_btnPesqCodActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+        
+    }//GEN-LAST:event_btnEnviarActionPerformed
+
+    private void rbnServActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnServActionPerformed
+        criarTabelas();
+    }//GEN-LAST:event_rbnServActionPerformed
+
+    private void rbnProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnProdActionPerformed
+        criarTabelas1();
+    }//GEN-LAST:event_rbnProdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,6 +179,8 @@ public class buscaServProd extends javax.swing.JFrame {
             }
         });
     }
+    //minhas classes
+    
     //inserindo imagens nos componentes do frame
      public void inserirImg(){
         btnPesqCod.setIcon(imge.img("/img/buscar16.png"));
@@ -156,6 +188,76 @@ public class buscaServProd extends javax.swing.JFrame {
         btnEnviar.setIcon(imge.img("/img/verifica.png"));
         btnCancelar.setIcon(imge.img("/img/remover.png"));
     }
+     
+    //criei dos metodos para conseguir ativar de outra classe
+    //dtm esta se sobreescrevendo, assim consigo mudar a tabela pra serviço ou produto
+    public void criarTabelas(){
+        String qServ = "SELECT cd_ServProd, nm_ServProd, ds_ServProd, vl_ServProd FROM servprod WHERE bl_Serv= '1'";
+        //prepara model para tabela
+        dtm = new DefaultTableModel();
+        tblServProd.setModel(dtm);
+        //qtd colunas
+        String [] nomes = {"Cód", "Nome", "Descrição", "Valor"};  
+        //add as colunas na tabela
+        for(int i =0; i<nomes.length; i++){
+            //adiciona os nomes no dtm que é o model
+            //ele é quem adiciona os dados na tabela
+            dtm.addColumn(nomes[i]);
+        }
+        inserirST(qServ, nomes.length);
+    }
+    
+    private void inserirST(String q, int col){
+        
+        try{
+            //a execução do comando será feita pelo método rsexecutar, na classe AcesspBD
+            //o retorno do metodo sera um Resulset que sera armazenado em rsresultado
+            
+            rsresultado = ConexaoBD.rsexecutar(q);
+           
+            //adicionar as linhas
+            //array que guarda os dados de cada linha
+            String [] row = new String[col];
+            while(rsresultado.next()){
+                for(int i=0;i<row.length;i++){
+                    //adcionaos dados no array
+                    row[i] = rsresultado.getString(i+1);
+                }
+                //adicionar a linha toda na tabela
+                dtm.addRow(row);
+            }
+            }catch(Exception e){e.printStackTrace();}  
+        }
+     
+    public void criarTabelas1(){
+        String qProd = "SELECT cd_ServProd, qt_Prod,nm_ServProd, ds_ServProd, vl_ServProd FROM servprod WHERE bl_Serv= '0'";
+        dtm = new DefaultTableModel();
+        tblServProd.setModel(dtm);
+        String [] nomes = {"Cód","Qntd", "Nome", "Descrição", "Valor", "valor Estoque"}; 
+        for(int i =0; i<nomes.length; i++){
+            dtm.addColumn(nomes[i]);
+        } 
+        inserirSP(qProd, nomes.length);
+    }
+     private void inserirSP(String q, int col){
+        try{
+            rsresultado = ConexaoBD.rsexecutar(q);
+            String [] row = new String[col];
+            while(rsresultado.next()){
+                for(int i=0;i<col-1;i++){
+                   row[i] = rsresultado.getString(i+1);
+                }
+                int x = Integer.parseInt(row[1])*Integer.parseInt(row[4]);
+                row[row.length-1] = ""+x;
+                dtm.addRow(row);
+            }
+        }catch(Exception e){e.printStackTrace();}  
+    }
+     
+     
+           
+    
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEnviar;
@@ -165,8 +267,8 @@ public class buscaServProd extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JRadioButton rbnProd;
-    private javax.swing.JRadioButton rbnServ;
+    public javax.swing.JRadioButton rbnProd;
+    public javax.swing.JRadioButton rbnServ;
     private javax.swing.JTable tblServProd;
     private javax.swing.JTextField txtCod;
     private javax.swing.JTextField txtNome;

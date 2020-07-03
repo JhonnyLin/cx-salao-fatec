@@ -13,6 +13,7 @@ public class servprod extends javax.swing.JFrame {
         txtCod.setEnabled(false);
         txtPercent.setEnabled(false);
         mscVlrComp.setEnabled(false);
+        limpeza();
     }
     Imagens imge = new Imagens();
     String [] dados = new String[3];
@@ -43,15 +44,15 @@ public class servprod extends javax.swing.JFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         btnAddProdAserv = new javax.swing.JButton();
         txtVlVenda = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         jFormattedTextField3.setText("jFormattedTextField3");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro");
         setLocationByPlatform(true);
-        setMaximumSize(new java.awt.Dimension(595, 425));
         setMinimumSize(new java.awt.Dimension(595, 425));
-        setPreferredSize(new java.awt.Dimension(595, 425));
         getContentPane().setLayout(null);
 
         jLabel1.setText("Cód:");
@@ -81,7 +82,7 @@ public class servprod extends javax.swing.JFrame {
 
         mscVlrComp.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         getContentPane().add(mscVlrComp);
-        mscVlrComp.setBounds(60, 160, 100, 29);
+        mscVlrComp.setBounds(80, 160, 100, 29);
         getContentPane().add(txtPercent);
         txtPercent.setBounds(420, 160, 61, 29);
 
@@ -144,6 +145,12 @@ public class servprod extends javax.swing.JFrame {
         });
         getContentPane().add(jRadioButton2);
         jRadioButton2.setBounds(180, 30, 93, 23);
+
+        btnAddProdAserv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddProdAservActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAddProdAserv);
         btnAddProdAserv.setBounds(510, 20, 60, 50);
 
@@ -153,7 +160,17 @@ public class servprod extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtVlVenda);
-        txtVlVenda.setBounds(240, 160, 110, 30);
+        txtVlVenda.setBounds(260, 160, 100, 30);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("R$");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(60, 160, 34, 30);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("R$");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(240, 150, 40, 50);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -185,11 +202,13 @@ public class servprod extends javax.swing.JFrame {
             a = "INSERT INTO servprod (bl_Serv, nm_ServProd, ds_ServProd, vl_ServProd)";
             f = "VALUES("+ serv +",'"+dados[0]+"','"+dados[2]+"','"+dados[1]+"')";
         }else{
-           a = "INSERT INTO servprod (bl_Serv, nm_ServProd, ds_ServProd, vl_ServProd, qt_Prod) ";
+           a = "INSERT INTO servprod (bl_Serv, nm_ServProd, ds_ServProd, vl_ServProd, qt_Prod)";
            String b = JOptionPane.showInputDialog("Quantidade em estoque", 0);
            f = "VALUES("+ serv +",'"+dados[0]+"','"+dados[2]+"','"+dados[1]+"','"+b+"')";
         }
         ConexaoBD.executar(a+f);
+        //System.out.println(a+f);
+        limpeza();
         
     }//GEN-LAST:event_btnEnviarActionPerformed
 
@@ -200,6 +219,11 @@ public class servprod extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnAddProdAservActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProdAservActionPerformed
+        buscaServProd bSP = new buscaServProd();
+        bSP.setVisible(true);
+    }//GEN-LAST:event_btnAddProdAservActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -213,6 +237,15 @@ public class servprod extends javax.swing.JFrame {
         btnAddProdAserv.setIcon(imge.img("/img/cesta1.png"));
         btnEnviar.setIcon(imge.img("/img/verifica.png"));
         btnCancelar.setIcon(imge.img("/img/remover.png"));
+    }
+    
+    public void limpeza(){
+        txtNome.setText("");
+        txtCod.setText("");
+        txtPercent.setText("");
+        txtVlVenda.setText("");
+        mscVlrComp.setText("");
+        atxDescricao.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -229,6 +262,8 @@ public class servprod extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
