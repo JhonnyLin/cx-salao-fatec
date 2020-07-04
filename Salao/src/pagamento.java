@@ -31,6 +31,7 @@ public class pagamento extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pagamento");
         setMinimumSize(new java.awt.Dimension(421, 266));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         lblValor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -75,6 +76,7 @@ public class pagamento extends javax.swing.JFrame {
         btnCartao.setBounds(170, 140, 73, 70);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbxTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTotalActionPerformed
@@ -92,11 +94,6 @@ public class pagamento extends javax.swing.JFrame {
     private void btnFiadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiadoActionPerformed
         JOptionPane.showMessageDialog(null, "modulo ainda n disponivel");
     }//GEN-LAST:event_btnFiadoActionPerformed
-    
-    public void setValor(String valor){
-        txtValor.setText(valor);
-        this.valor = valor;
-    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -150,6 +147,13 @@ public class pagamento extends javax.swing.JFrame {
         configinicializacao();
         ativo();
     }
+    
+    //insere o valor no campo
+    public void setValor(String valor){
+        txtValor.setText(valor);
+        this.valor = valor;
+    }
+    
     //config do fram
     public void configinicializacao(){
         x =  true;

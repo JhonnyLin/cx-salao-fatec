@@ -1,5 +1,6 @@
 import ClasseBD.ConexaoBD;
 import classe.Imagens;
+import javax.swing.JOptionPane;
 
 public class fornecedor extends javax.swing.JFrame {
 
@@ -40,8 +41,8 @@ public class fornecedor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Fornecedor");
         setLocationByPlatform(true);
-        setMaximumSize(new java.awt.Dimension(450, 500));
         setMinimumSize(new java.awt.Dimension(450, 500));
+        setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
         getContentPane().setLayout(null);
 
@@ -160,10 +161,12 @@ public class fornecedor extends javax.swing.JFrame {
         mcrCNPJ.setBounds(30, 140, 320, 30);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         inicializar(false);
+        limparCampos();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnPesqTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqTelActionPerformed
@@ -189,9 +192,9 @@ public class fornecedor extends javax.swing.JFrame {
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
        String query = inserirForn();
-       ConexaoBD.connect();
-       ConexaoBD.executar(query);
-       
+       //ConexaoBD.executar(query);
+       JOptionPane.showMessageDialog(null, "Fornecedor Cadastrado!");
+       limparCampos();
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -281,6 +284,15 @@ public class fornecedor extends javax.swing.JFrame {
         btnEnviar.setIcon(imge.img("/img/verifica.png"));
         btnCancelar.setIcon(imge.img("/img/remover.png"));
     }
+    
+    public void limparCampos(){
+        txtCodFornecedor.setText("");
+        txtNmFornecedor.setText("");
+        mcrCNPJ.setText("");
+        mcrTelFornecedor.setText("");        
+        txtEmaiFornecedor.setText("");
+        atxEndFornecedor.setText("");
+   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea atxEndFornecedor;

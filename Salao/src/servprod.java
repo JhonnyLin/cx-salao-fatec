@@ -53,6 +53,7 @@ public class servprod extends javax.swing.JFrame {
         setTitle("Cadastro");
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(595, 425));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jLabel1.setText("Cód:");
@@ -86,7 +87,7 @@ public class servprod extends javax.swing.JFrame {
         getContentPane().add(txtPercent);
         txtPercent.setBounds(420, 160, 61, 29);
 
-        jLabel3.setText("Valor de compra:");
+        jLabel3.setText("Valor de custo:");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(60, 130, 140, 26);
 
@@ -97,11 +98,11 @@ public class servprod extends javax.swing.JFrame {
 
         jLabel5.setText("Valor de Venda:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(240, 140, 130, 14);
+        jLabel5.setBounds(240, 134, 130, 20);
 
         jLabel6.setText("Percentual");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(420, 140, 100, 14);
+        jLabel6.setBounds(420, 134, 100, 20);
 
         jLabel7.setText("Descrição:");
         getContentPane().add(jLabel7);
@@ -173,6 +174,7 @@ public class servprod extends javax.swing.JFrame {
         jLabel9.setBounds(240, 150, 40, 50);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed

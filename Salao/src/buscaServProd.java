@@ -34,8 +34,8 @@ public class buscaServProd extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Busca");
-        setMaximumSize(new java.awt.Dimension(700, 550));
         setMinimumSize(new java.awt.Dimension(700, 550));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         buttonGroup1.add(rbnServ);
@@ -119,6 +119,7 @@ public class buscaServProd extends javax.swing.JFrame {
         btnCancelar.setBounds(390, 430, 100, 30);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesqNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqNomeActionPerformed
@@ -127,6 +128,7 @@ public class buscaServProd extends javax.swing.JFrame {
 
     private void btnPesqCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqCodActionPerformed
         String texto = txtCod.getText();
+        pCod(texto);
     }//GEN-LAST:event_btnPesqCodActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -180,6 +182,17 @@ public class buscaServProd extends javax.swing.JFrame {
         });
     }
     //minhas classes
+   
+    //pesquisar na tabela
+    public void pCod(String a){
+        
+        
+    }
+    
+    public void pNome(String a){
+    
+    
+    }
     
     //inserindo imagens nos componentes do frame
      public void inserirImg(){
@@ -239,7 +252,8 @@ public class buscaServProd extends javax.swing.JFrame {
         } 
         inserirSP(qProd, nomes.length);
     }
-     private void inserirSP(String q, int col){
+    
+    private void inserirSP(String q, int col){
         try{
             rsresultado = ConexaoBD.rsexecutar(q);
             String [] row = new String[col];

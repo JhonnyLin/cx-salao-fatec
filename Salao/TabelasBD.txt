@@ -1,0 +1,35 @@
+////////////////////////BANCO DE DADOS////////////////////////////
+
+
+///////////////////////SERVPROD//////////////////////////////////
+
+CREATE TABLE `salao_bd`.`servprod` (
+  `cd_ServProd` INT NOT NULL AUTO_INCREMENT,
+  `bl_Serv` TINYINT NULL,
+  `nm_ServProd` VARCHAR(50) NULL,
+  `ds_ServProd` VARCHAR(250) NULL,
+  `vl_ServProd` VARCHAR(7) NULL,
+  `qt_Prod` INT NULL,
+  PRIMARY KEY (`cd_ServProd`));
+
+//////////////////////FORNECEDOR////////////////////////////////
+
+CREATE TABLE `salao_bd`.`fornecedor` (
+  `idfornecedor` INT NOT NULL AUTO_INCREMENT,
+  `nm_Fornecedor` VARCHAR(45) NULL,
+  `cd_CNPJ` VARCHAR(45) NULL,
+  `cd_Telefone` VARCHAR(15) NULL,
+  `ds_Email` VARCHAR(45) NULL,
+  `ds_Endereco` VARCHAR(250) NULL,
+  PRIMARY KEY (`idfornecedor`));
+
+//////////////////////CLIENTE////////////////////////////////
+
+CREATE TABLE `salao_bd`.`cliente` (
+  `idcliente` INT NOT NULL AUTO_INCREMENT,
+  `nm_Cliente` VARCHAR(50) NULL,
+  `cd_Telefone` VARCHAR(15) NULL,
+  `ds_Email` VARCHAR(100) NULL,
+  `ds_Endereco` VARCHAR(250) NULL,
+  `bl_Sexo_F` TINYINT NULL,
+  PRIMARY KEY (`idcliente`));

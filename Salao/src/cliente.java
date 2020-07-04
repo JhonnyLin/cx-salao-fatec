@@ -1,5 +1,6 @@
 import ClasseBD.ConexaoBD;
 import classe.Imagens;
+import javax.swing.JOptionPane;
 public class cliente extends javax.swing.JFrame {
 
     
@@ -40,6 +41,7 @@ public class cliente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cliente");
         setMinimumSize(new java.awt.Dimension(570, 500));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -175,6 +177,7 @@ public class cliente extends javax.swing.JFrame {
         btnEnviar.setBounds(150, 380, 90, 30);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -194,18 +197,15 @@ public class cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-        
         String query = inserirCli();
-        //só pra teste
-        ConexaoBD.connect();
+        inicializar(true);
         ConexaoBD.executar(query);
-        
+        JOptionPane.showMessageDialog(null, "Inserindo no banco.");
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnPesqCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqCodActionPerformed
         texto = txtCodCliente.getText();
         String query = pesquisaCli(texto,"idcliente");
-        ConexaoBD.connect();
         ConexaoBD.rsexecutar(query);
     }//GEN-LAST:event_btnPesqCodActionPerformed
 
@@ -284,6 +284,7 @@ public class cliente extends javax.swing.JFrame {
         btnPesqCod.setVisible(psq);
         txtCodCliente.setEnabled(psq);
         btnPesqTel.setVisible(psq); 
+        rbtFeminino.setSelected(true);
         rbtFemininoActionPerformed(null);
         if(psq){
             txtEmaiCliente.setEnabled(false);
@@ -291,17 +292,27 @@ public class cliente extends javax.swing.JFrame {
         }else{
             txtEmaiCliente.setEnabled(true);
             atxEndCliente.setEditable(true);
-        }        
+        }
+        limparCampos();
     }
     
     //inserindo imagens nos componentes do frame
-     public void inserirImg(){
+    public void inserirImg(){
         btnPesqCod.setIcon(imge.img("/img/buscar16.png"));
         btnPesqNome.setIcon(imge.img("/img/buscar16.png"));
         btnPesqTel.setIcon(imge.img("/img/buscar16.png"));
         btnAdd.setIcon(imge.img("/img/adicionar.png"));
         btnEnviar.setIcon(imge.img("/img/verifica.png"));
         btnCancelar.setIcon(imge.img("/img/remover.png"));
+    }
+    
+    //limpar campos
+    public void limparCampos(){
+        txtCodCliente.setText("");
+        txtNmCliente.setText("");
+        mcrTelClente.setText("");
+        txtEmaiCliente.setText("");
+        atxEndCliente.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

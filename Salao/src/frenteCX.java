@@ -1,7 +1,4 @@
-
-import ClasseBD.ConexaoBD;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import classe.Imagens;
 import javax.swing.JFrame;
 import ClasseBD.ConexaoBD;
@@ -20,6 +17,7 @@ public class frenteCX extends javax.swing.JFrame {
         rbtServicoActionPerformed(null);
         ConexaoBD.connect();
         criarTabela();
+        tblCarrinho.setEnabled(false);
     }
     Imagens imge =  new Imagens();
     cliente c = new cliente();
@@ -104,6 +102,8 @@ public class frenteCX extends javax.swing.JFrame {
         jMenuBar2.add(jMenu5);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
+        setResizable(false);
         setSize(new java.awt.Dimension(1500, 700));
 
         btnPerfil.addActionListener(new java.awt.event.ActionListener() {
@@ -503,6 +503,7 @@ public class frenteCX extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNmClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNmClienteActionPerformed
@@ -543,7 +544,6 @@ public class frenteCX extends javax.swing.JFrame {
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
         chamadaFram(p);
-        txtTotais.setText("25.00");
         p.setValor(txtTotais.getText());
         p.configinicializacao();
     }//GEN-LAST:event_btnPagarActionPerformed
@@ -553,8 +553,6 @@ public class frenteCX extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtProdutosActionPerformed
 
     private void btnPesquisaSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaSPActionPerformed
-        //chamar form configução expecifica
-        ConexaoBD.connect();
         //se rbnProdutos estiver selecionado
         if(rbtProdutos.isSelected()){
            //chamar esses metodos do frame buscaSP 
@@ -623,6 +621,12 @@ public class frenteCX extends javax.swing.JFrame {
     }
     
     //minhas clases
+    public void limparTabela(){
+        dtm = new DefaultTableModel();
+        criarTabela();
+        txtTotais.setText("");
+    }
+    
     private void criarTabela(){   
             //adiciona as colunas
             tblCarrinho.setModel(dtm);
@@ -665,7 +669,7 @@ public class frenteCX extends javax.swing.JFrame {
             String a = dtm.getValueAt(i, 4).toString();
             double c = Double.parseDouble(a);
             b = b + c;
-            txtTotais.setText("R$        "+b);
+            txtTotais.setText(""+b);
         }
     }
     
