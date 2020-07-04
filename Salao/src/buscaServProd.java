@@ -4,7 +4,7 @@ import classe.Imagens;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 
-
+//cod pode fazer pra pegar linha pelo numero do cod
 public class buscaServProd extends javax.swing.JFrame {
 
     public buscaServProd() {

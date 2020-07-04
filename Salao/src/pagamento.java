@@ -1,13 +1,22 @@
 import classe.Imagens;
+import javax.swing.JOptionPane;
 public class pagamento extends javax.swing.JFrame {
 
     public pagamento() {
         initComponents();
+        //coloca as imgens
         inserirImg();
-        cbxTotalActionPerformed(null);
+        configinicializacao();
     }
+    
+    boolean x =  true;
+    String valor;
     Imagens imge = new Imagens();
-    boolean x =  false;
+    double acomulado = 0;
+    
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -21,7 +30,6 @@ public class pagamento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pagamento");
-        setMaximumSize(new java.awt.Dimension(421, 266));
         setMinimumSize(new java.awt.Dimension(421, 266));
         getContentPane().setLayout(null);
 
@@ -41,10 +49,28 @@ public class pagamento extends javax.swing.JFrame {
         });
         getContentPane().add(cbxTotal);
         cbxTotal.setBounds(290, 70, 81, 23);
+
+        btnFiado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiadoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnFiado);
         btnFiado.setBounds(270, 140, 73, 70);
+
+        btnDinheiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDinheiroActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnDinheiro);
         btnDinheiro.setBounds(70, 140, 70, 70);
+
+        btnCartao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCartaoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCartao);
         btnCartao.setBounds(170, 140, 73, 70);
 
@@ -52,20 +78,26 @@ public class pagamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbxTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTotalActionPerformed
-        if(x){
-            txtValor.setEnabled(x);
-            x=false;
-        }else{
-            txtValor.setEnabled(x);
-            x=true;
-        }
+        estado();
     }//GEN-LAST:event_cbxTotalActionPerformed
- public void inserirImg(){
-        btnDinheiro.setIcon(imge.img("/img/money.png"));
-        btnCartao.setIcon(imge.img("/img/pay.png"));
-        btnFiado.setIcon(imge.img("/img/bill.png"));
-        
- }
+
+    private void btnDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDinheiroActionPerformed
+        pag();
+    }//GEN-LAST:event_btnDinheiroActionPerformed
+
+    private void btnCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCartaoActionPerformed
+        pag();
+    }//GEN-LAST:event_btnCartaoActionPerformed
+
+    private void btnFiadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiadoActionPerformed
+        JOptionPane.showMessageDialog(null, "modulo ainda n disponivel");
+    }//GEN-LAST:event_btnFiadoActionPerformed
+    
+    public void setValor(String valor){
+        txtValor.setText(valor);
+        this.valor = valor;
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -97,7 +129,64 @@ public class pagamento extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    //faz a subitração do valor
+    public void pag(){
+        //pega o valor que veio do frentecx e transforma em double(vem texto)
+        double x = Double.parseDouble(valor);
+        //pega um a variavel e soma o valor acomulado mais oq tem no txt pra saber o valor total pago
+        double y = acomulado+= Double.parseDouble(txtValor.getText());
+        //se o valor total - valor for maior que zero quer dizer que ainda falta uma quantia
+        if(x-y > 0){
+            //devolve o valor da operação "0.00"
+            txtValor.setText(x-y+"");
+        }else{
+            //printa o valor do troco
+            JOptionPane.showMessageDialog(null, "Troco: R$ "+ ((x-y)*-1));
+            //zera o acomulado
+            acomulado = 0.00;
+            txtValor.setText(acomulado+"");
+        }
+        configinicializacao();
+        ativo();
+    }
+    //config do fram
+    public void configinicializacao(){
+        x =  true;
+        cbxTotal.setSelected(x);
+        estado();
+        
+    }
+    
+    //alterna o valor de x que determina se o txt fica ativo ou não
+    public void estado(){
+        //se for vdd troca pra false e bloquei
+        if(x){
+            x = false;
+            txtValor.setEnabled(x);
+        //se for falsso troca pra true e libera
+        }else{
+            x = true;
+            txtValor.setEnabled(x);
+        }
+    }
+    
+    //se o valor é igual a zero ele fecha o pagamentos
+    public void ativo(){
+        if(txtValor.getText().equals("0.0")){
+            dispose();
+        }
+    }
+    
+    //insere imagens do frame
+    public void inserirImg(){
+        btnDinheiro.setIcon(imge.img("/img/money.png"));
+        btnCartao.setIcon(imge.img("/img/pay.png"));
+        btnFiado.setIcon(imge.img("/img/bill.png"));
+        
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCartao;
     private javax.swing.JButton btnDinheiro;
