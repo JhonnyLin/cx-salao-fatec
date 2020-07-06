@@ -1,5 +1,10 @@
+
 import ClasseBD.ConexaoBD;
 import classe.Imagens;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class fornecedor extends javax.swing.JFrame {
@@ -10,9 +15,7 @@ public class fornecedor extends javax.swing.JFrame {
     }
     String a;
     boolean psq;
-   
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -38,7 +41,7 @@ public class fornecedor extends javax.swing.JFrame {
         btnPesqNome = new javax.swing.JButton();
         mcrCNPJ = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Fornecedor");
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(450, 500));
@@ -171,34 +174,54 @@ public class fornecedor extends javax.swing.JFrame {
 
     private void btnPesqTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqTelActionPerformed
        a = mcrTelFornecedor.getText();
-       pesquisaForn(a,"cd_Telefone");
+       String query = pesquisaForn(a,"cd_Telefone");
+       try {
+            RetornarFornecedor(ConexaoBD.rsexecutar(query));
+        } catch (SQLException ex) {
+            Logger.getLogger(fornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnPesqTelActionPerformed
 
     private void btnPesqCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqCodActionPerformed
        a = txtCodFornecedor.getText();
-       pesquisaForn(a,"idfornecedor");
-       
+       String query = pesquisaForn(a,"idfornecedor");
+       try {
+            RetornarFornecedor(ConexaoBD.rsexecutar(query));
+        } catch (SQLException ex) {
+            Logger.getLogger(fornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnPesqCodActionPerformed
 
     private void btnPesqCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqCNPJActionPerformed
        a = mcrCNPJ.getText();
-       pesquisaForn(a,"cd_CNPJ");
+       String query = pesquisaForn(a,"cd_CNPJ");
+       try {
+            RetornarFornecedor(ConexaoBD.rsexecutar(query));
+        } catch (SQLException ex) {
+            Logger.getLogger(fornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnPesqCNPJActionPerformed
 
     private void btnPesqNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqNomeActionPerformed
        a = txtNmFornecedor.getText();
-       pesquisaForn(a,"nm_Fornecedor");
+       String query = pesquisaForn(a,"nm_Fornecedor");
+        try {
+            RetornarFornecedor(ConexaoBD.rsexecutar(query));
+        } catch (SQLException ex) {
+            Logger.getLogger(fornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnPesqNomeActionPerformed
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
        String query = inserirForn();
-       //ConexaoBD.executar(query);
+       ConexaoBD.executar(query);
        JOptionPane.showMessageDialog(null, "Fornecedor Cadastrado!");
        limparCampos();
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         dispose();
+        limparCampos();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     
@@ -234,13 +257,21 @@ public class fornecedor extends javax.swing.JFrame {
             }
         });       
     }
-    public Boolean pesquisaForn(String texto, String campo){
+    public String pesquisaForn(String texto, String campo){
         String q = "SELECT * FROM fornecedor WHERE  ";
         String query = q+campo+"= '"+texto+"'";
-        System.out.println(query);
-        return false;
+        return query;
     }
-    //quary pronta
+        public void RetornarFornecedor(ResultSet rs ) throws SQLException{
+        while(rs.next()){
+            txtCodFornecedor.setText(rs.getString(1));
+            txtNmFornecedor.setText(rs.getString(2));
+            mcrCNPJ.setText(rs.getString(3));
+            mcrTelFornecedor.setText(rs.getString(4));
+            txtEmaiFornecedor.setText(rs.getString(5));
+            atxEndFornecedor.setText(rs.getString(6));
+        }
+    }
     public String inserirForn(){
         //definindo a tabela e os campos para inserir
         String q = "INSERT INTO fornecedor (nm_Fornecedor, cd_CNPJ, cd_Telefone, ds_Email,ds_Endereco) ";
@@ -267,10 +298,10 @@ public class fornecedor extends javax.swing.JFrame {
         btnPesqTel.setVisible(psq); 
         if(psq){
             txtEmaiFornecedor.setEnabled(false);
-            atxEndFornecedor.setEditable(false);
+            atxEndFornecedor.setEnabled(false);
         }else{
             txtEmaiFornecedor.setEnabled(true);
-            atxEndFornecedor.setEditable(true);
+            atxEndFornecedor.setEnabled(true);
         }        
     }
     

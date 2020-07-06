@@ -128,7 +128,6 @@ public class buscaServProd extends javax.swing.JFrame {
 
     private void btnPesqCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqCodActionPerformed
         String texto = txtCod.getText();
-        pCod(texto);
     }//GEN-LAST:event_btnPesqCodActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -182,17 +181,6 @@ public class buscaServProd extends javax.swing.JFrame {
         });
     }
     //minhas classes
-   
-    //pesquisar na tabela
-    public void pCod(String a){
-        
-        
-    }
-    
-    public void pNome(String a){
-    
-    
-    }
     
     //inserindo imagens nos componentes do frame
      public void inserirImg(){

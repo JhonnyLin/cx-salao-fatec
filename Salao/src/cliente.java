@@ -1,6 +1,11 @@
 import ClasseBD.ConexaoBD;
 import classe.Imagens;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
 public class cliente extends javax.swing.JFrame {
 
     
@@ -198,25 +203,38 @@ public class cliente extends javax.swing.JFrame {
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         String query = inserirCli();
-        inicializar(true);
-        ConexaoBD.executar(query);
+        inicializar(true);ConexaoBD.executar(query);
         JOptionPane.showMessageDialog(null, "Inserindo no banco.");
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnPesqCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqCodActionPerformed
         texto = txtCodCliente.getText();
         String query = pesquisaCli(texto,"idcliente");
-        ConexaoBD.rsexecutar(query);
+        try {
+            InserirCliente(ConexaoBD.rsexecutar(query));
+        } catch (SQLException ex) {
+            Logger.getLogger(cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnPesqCodActionPerformed
 
     private void btnPesqNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqNomeActionPerformed
         texto = txtNmCliente.getText();
-        pesquisaCli(texto,"nm_Cliente");
+        String query = pesquisaCli(texto,"nm_Cliente");
+        try {
+            InserirCliente(ConexaoBD.rsexecutar(query));
+        } catch (SQLException ex) {
+            Logger.getLogger(cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnPesqNomeActionPerformed
 
     private void btnPesqTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqTelActionPerformed
         texto = mcrTelClente.getText();
-        pesquisaCli(texto,"cd_Telefone");
+        String query = pesquisaCli(texto,"cd_Telefone");
+        try {
+            InserirCliente(ConexaoBD.rsexecutar(query));
+        } catch (SQLException ex) {
+            Logger.getLogger(cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnPesqTelActionPerformed
 
     public static void main(String args[]) {
@@ -251,10 +269,27 @@ public class cliente extends javax.swing.JFrame {
         });
     }
     
+    
+    public void InserirCliente(ResultSet rs ) throws SQLException{
+        while(rs.next()){
+            txtCodCliente.setText(rs.getString(1));
+            txtNmCliente.setText(rs.getString(2));
+            mcrTelClente.setText(rs.getString(3));
+            txtEmaiCliente.setText(rs.getString(4));
+            atxEndCliente.setText(rs.getString(5));
+            if(rs.getString(6).equals("0")){
+                rbtMasculino.setSelected(true);
+                rbtMasculinoActionPerformed(null);
+            }else{
+                rbtFeminino.setSelected(true);
+                rbtFemininoActionPerformed(null);
+            }
+        }
+    }
+    
     public String pesquisaCli(String texto, String campo){
         String q = "SELECT * FROM cliente WHERE  ";
         String query = q+campo+"= '"+texto+"'";
-        System.out.println(query);
         return query;
     }
     
@@ -288,10 +323,14 @@ public class cliente extends javax.swing.JFrame {
         rbtFemininoActionPerformed(null);
         if(psq){
             txtEmaiCliente.setEnabled(false);
-            atxEndCliente.setEditable(false);
+            atxEndCliente.setEnabled(false);
+            rbtMasculino.setEnabled(false);
+            rbtFeminino.setEnabled(false);
         }else{
             txtEmaiCliente.setEnabled(true);
-            atxEndCliente.setEditable(true);
+            atxEndCliente.setEnabled(true);
+            rbtMasculino.setEnabled(true);
+            rbtFeminino.setEnabled(true);
         }
         limparCampos();
     }

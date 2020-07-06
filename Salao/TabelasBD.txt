@@ -33,3 +33,6 @@ CREATE TABLE `salao_bd`.`cliente` (
   `ds_Endereco` VARCHAR(250) NULL,
   `bl_Sexo_F` TINYINT NULL,
   PRIMARY KEY (`idcliente`));
+
+////////////////////////QUERY CLIENTE//////////////////////
+SELECT nm_Cliente, cd_Telefone, ds_Email, ds_Endereco, bl_Sexo_F FROM cliente WHERE idcliente = '1'

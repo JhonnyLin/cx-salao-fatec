@@ -3,6 +3,7 @@ import classe.Imagens;
 import javax.swing.JFrame;
 import ClasseBD.ConexaoBD;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 //fazer uma classe só pra chamadas
@@ -19,6 +20,7 @@ public class frenteCX extends javax.swing.JFrame {
         criarTabela();
         tblCarrinho.setEnabled(false);
     }
+    
     Imagens imge =  new Imagens();
     cliente c = new cliente();
     buscaServProd bsp = new buscaServProd();
@@ -131,6 +133,11 @@ public class frenteCX extends javax.swing.JFrame {
         pnlMenuSP.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnRapido7.setText("jButton2");
+        btnRapido7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido7ActionPerformed(evt);
+            }
+        });
 
         btnRapido2.setText("jButton3");
         btnRapido2.addActionListener(new java.awt.event.ActionListener() {
@@ -147,16 +154,46 @@ public class frenteCX extends javax.swing.JFrame {
         });
 
         btnRapido4.setText("jButton5");
+        btnRapido4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido4ActionPerformed(evt);
+            }
+        });
 
         btnRapido5.setText("jButton5");
+        btnRapido5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido5ActionPerformed(evt);
+            }
+        });
 
         btnRapido6.setText("jButton7");
+        btnRapido6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido6ActionPerformed(evt);
+            }
+        });
 
         btnRapido13.setText("jButton8");
+        btnRapido13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido13ActionPerformed(evt);
+            }
+        });
 
         btnRapido9.setText("jButton9");
+        btnRapido9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido9ActionPerformed(evt);
+            }
+        });
 
         btnRapido10.setText("jButton2");
+        btnRapido10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido10ActionPerformed(evt);
+            }
+        });
 
         btnRapido1.setText("jButton1");
         btnRapido1.addActionListener(new java.awt.event.ActionListener() {
@@ -166,24 +203,74 @@ public class frenteCX extends javax.swing.JFrame {
         });
 
         btnRapido8.setText("jButton2");
+        btnRapido8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido8ActionPerformed(evt);
+            }
+        });
 
         btnRapido12.setText("jButton2");
+        btnRapido12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido12ActionPerformed(evt);
+            }
+        });
 
         btnRapido14.setText("jButton2");
+        btnRapido14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido14ActionPerformed(evt);
+            }
+        });
 
         btnRapido15.setText("jButton2");
+        btnRapido15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido15ActionPerformed(evt);
+            }
+        });
 
         btnRapido16.setText("jButton2");
+        btnRapido16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido16ActionPerformed(evt);
+            }
+        });
 
         btnRapido11.setText("jButton2");
+        btnRapido11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido11ActionPerformed(evt);
+            }
+        });
 
         btnRapido17.setText("jButton2");
+        btnRapido17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido17ActionPerformed(evt);
+            }
+        });
 
         btnRapido18.setText("jButton2");
+        btnRapido18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido18ActionPerformed(evt);
+            }
+        });
 
         btnRapido19.setText("jButton2");
+        btnRapido19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido19ActionPerformed(evt);
+            }
+        });
 
         btnRapido20.setText("jButton2");
+        btnRapido20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRapido20ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlMenuSPLayout = new javax.swing.GroupLayout(pnlMenuSP);
         pnlMenuSP.setLayout(pnlMenuSPLayout);
@@ -543,9 +630,15 @@ public class frenteCX extends javax.swing.JFrame {
     }//GEN-LAST:event_imnConFActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        chamadaFram(p);
-        p.setValor(txtTotais.getText());
-        p.configinicializacao();
+        String x = txtTotais.getText();
+        if(tblCarrinho.getRowCount()==0){
+            JOptionPane.showMessageDialog(null, "Não há produtos...");
+        }else{
+            chamadaFram(p);
+            p.setValor(txtTotais.getText());
+            p.configinicializacao();
+            limparTabela();
+        }
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void rbtProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtProdutosActionPerformed
@@ -572,6 +665,11 @@ public class frenteCX extends javax.swing.JFrame {
 
     private void btnRapido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido1ActionPerformed
        confgTabela( "1","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '1'");
+       if(rbtServico.isSelected() == true){
+           JOptionPane.showMessageDialog(null, "serviço");
+       }else{
+           JOptionPane.showMessageDialog(null, "produto");
+       }
     }//GEN-LAST:event_btnRapido1ActionPerformed
 
     private void btnRapido2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido2ActionPerformed
@@ -585,6 +683,74 @@ public class frenteCX extends javax.swing.JFrame {
     private void imnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnProdutosActionPerformed
         chamadaFram(bsp);
     }//GEN-LAST:event_imnProdutosActionPerformed
+
+    private void btnRapido4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido4ActionPerformed
+        confgTabela("4","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '4'");
+    }//GEN-LAST:event_btnRapido4ActionPerformed
+
+    private void btnRapido5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido5ActionPerformed
+        confgTabela("5","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '5'");
+    }//GEN-LAST:event_btnRapido5ActionPerformed
+
+    private void btnRapido6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido6ActionPerformed
+        confgTabela("6","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '6'");
+    }//GEN-LAST:event_btnRapido6ActionPerformed
+
+    private void btnRapido7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido7ActionPerformed
+        confgTabela("7","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '7'");
+    }//GEN-LAST:event_btnRapido7ActionPerformed
+
+    private void btnRapido8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido8ActionPerformed
+        confgTabela("8","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '8'");
+    }//GEN-LAST:event_btnRapido8ActionPerformed
+
+    private void btnRapido9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido9ActionPerformed
+        confgTabela("9","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '9'");
+    }//GEN-LAST:event_btnRapido9ActionPerformed
+
+    private void btnRapido10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido10ActionPerformed
+        confgTabela("10","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '10'");
+    }//GEN-LAST:event_btnRapido10ActionPerformed
+
+    private void btnRapido11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido11ActionPerformed
+        confgTabela("11","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '11'");
+    }//GEN-LAST:event_btnRapido11ActionPerformed
+
+    private void btnRapido12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido12ActionPerformed
+        confgTabela("12","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '12'");
+    }//GEN-LAST:event_btnRapido12ActionPerformed
+
+    private void btnRapido13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido13ActionPerformed
+        confgTabela("13","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '13'");
+    }//GEN-LAST:event_btnRapido13ActionPerformed
+
+    private void btnRapido14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido14ActionPerformed
+        confgTabela("14","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '14'");
+    }//GEN-LAST:event_btnRapido14ActionPerformed
+
+    private void btnRapido15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido15ActionPerformed
+        confgTabela("15","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '15'");
+    }//GEN-LAST:event_btnRapido15ActionPerformed
+
+    private void btnRapido16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido16ActionPerformed
+        confgTabela("16","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '16'");
+    }//GEN-LAST:event_btnRapido16ActionPerformed
+
+    private void btnRapido17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido17ActionPerformed
+        confgTabela("17","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '17'");
+    }//GEN-LAST:event_btnRapido17ActionPerformed
+
+    private void btnRapido18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido18ActionPerformed
+        confgTabela("18","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '18'");
+    }//GEN-LAST:event_btnRapido18ActionPerformed
+
+    private void btnRapido19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido19ActionPerformed
+        confgTabela("19","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '19'");
+    }//GEN-LAST:event_btnRapido19ActionPerformed
+
+    private void btnRapido20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido20ActionPerformed
+        confgTabela("20","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '20'");
+    }//GEN-LAST:event_btnRapido20ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -721,19 +887,19 @@ public class frenteCX extends javax.swing.JFrame {
          
     public void ProdServ(Boolean sP){
         JButton [] btn = {btnRapido1, btnRapido2, btnRapido3, btnRapido4, btnRapido5, btnRapido6, btnRapido7, btnRapido8, btnRapido9, btnRapido10,btnRapido11, btnRapido12, btnRapido13, btnRapido14, btnRapido15, btnRapido16, btnRapido17, btnRapido18, btnRapido19, btnRapido20 };
-        int [] codProduto ={};
-        String [] codServico ={};
+        String [] codProduto = {"exp1P","exp2P","exp3P","exp4P","exp5P","exp6P","exp7P","exp8P","exp9P","exp10P","exp11P","exp12P","exp13P","exp14P","exp15P","exp16P","exp17P","exp18P","exp19P","exp20P"};
+        String [] codServico = {"exp1","exp2","exp3","exp4","exp5","exp6","exp7","exp8","exp9","exp10","exp11","exp12","exp13","exp14","exp15","exp16","exp17","exp18","exp19","exp20"};
         //serviços
         if(sP){
             for(int i =0; i<btn.length;i++){
-                btn[i].setText("jhonny");
+                btn[i].setText(codProduto[i]);
             }
         }else{
             for(int i =0; i<btn.length;i++){
-                btn[i].setText("lin");
+                btn[i].setText(codServico[i]);
             }
         }
-        }
+    }
     
     public void setCliente(String nome, String cod){
         this.txtCdCliente.setText(cod);
